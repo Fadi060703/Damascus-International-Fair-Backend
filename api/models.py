@@ -37,8 +37,20 @@ class ParticipantCompany( models.Model ) :
 
     class Meta :
         def __str__( self ) :
-            return f'{ self.name + self.category}' 
-        
+            return self.name 
+
+
+class Product( models.Model ) :
+    name = models.CharField( max_length = 255 ) 
+    company = models.ForeignKey( ParticipantCompany , on_delete = models.CASCADE , related_name = 'prod' ) 
+    description = models.TextField() 
+    image = models.ImageField( upload_to= 'media/products' ) 
+
+    class Meta :
+        def __str__( self ) :
+            return self.name 
+
+
 class Offer( models.Model ) :
     company = models.ForeignKey( ParticipantCompany , on_delete = models.CASCADE , related_name = 'comOffer' ) 
     name = models.CharField( max_length = 255 ) 
@@ -47,3 +59,17 @@ class Offer( models.Model ) :
     class Meta :
         def __str__( self ) :
             return f'{ self.company + '' + self.name }' 
+        
+
+class Info( models.Model ) :
+    about = models.TextField() 
+    times = models.TextField() 
+    entries = models.TextField() 
+    media = models.TextField() 
+    transportation = models.TextField()
+
+class Feedack( models.Model ) :
+    fullName = models.CharField( max_length = 255 )
+    email = models.EmailField() 
+    phoneNumber = models.CharField( max_length = 20 ) 
+    text = models.TextField() 

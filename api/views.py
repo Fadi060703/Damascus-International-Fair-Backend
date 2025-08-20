@@ -13,7 +13,7 @@ class CoordDetailView( APIView ) :
     def get( self , request : Request , pk : int ) :
         data = Coordinates.objects.get( pk = pk ) 
         serializer = self.serializer_class( data ) 
-        return Response( data = serializer.dataa , status = status.HTTP_200_OK ) 
+        return Response( data = serializer.data , status = status.HTTP_200_OK ) 
     
 class ListArticlesView( APIView ) :
     serializer_class = ArticleMinimalSerializer 
@@ -77,3 +77,26 @@ class OfferDetailView( APIView ) :
         data = Offer.objects.get( pk = pk ) 
         serializer = self.serializer_class( data )
         return Response( data = serializer.data , status = status.HTTP_200_OK )    
+
+
+class ListCompanyProductsView( APIView ) :
+    serializer_class = ProductSerializer
+    def get( self , request : Request , pk : int ) :
+        data = Product.objects.filter( company = pk ) 
+        serializer = self.serializer_class( data , many = True ) 
+        return Response( data = serializer.data , status = status.HTTP_200_OK ) 
+    
+class ProductDetailView( APIView ) :
+    serializer_class = ProductSerializer 
+    def get( self , request : Request , pk : int ) :
+        data = Product.objects.get( pk = pk ) 
+        serializer = self.serializer_class( data ) 
+        return Response( data = serializer.data , status = status.HTTP_200_OK ) 
+    
+class GetInfoView( APIView ) :
+    serializer_class = InfoSerializer 
+    def get( self , request : Request ) :
+        data = Info.objects.get( pk = 1 ) 
+        serializer = self.serializer_class( data ) 
+        return Response( data = serializer.data , status = status.HTTP_200_OK ) 
+    

@@ -44,3 +44,25 @@ class OfferSerializer( serializers.ModelSerializer ) :
     class Meta :
         model = Offer 
         fields = [ 'id' , 'company' , 'name' , 'description' ] 
+
+class ProductMinimalSerializer( serializers.ModelSerializer ) :
+    CompanySerializer()
+    class Meta :
+        model = Product
+        fields = [ 'id' , 'name' , 'company' ] 
+
+class ProductSerializer( serializers.ModelSerializer ) :
+    CompanySerializer() 
+    class Meta : 
+        model = Product 
+        fields = [ 'id' , 'name' , 'company' , 'description' , 'image' ]  
+
+class InfoSerializer( serializers.ModelSerializer ) :
+    class Meta :
+        model = Info 
+        fields = [ 'about' , 'times' , 'entries' , 'media' , 'transportation' ] 
+
+class FeedbackSerializer( serializers.ModelSerializer ) :
+    class Meta :
+        model = Feedack
+        fields = [ 'fullName' , 'email' , 'phoneNumber' , 'text' ] 

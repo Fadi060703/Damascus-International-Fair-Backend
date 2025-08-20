@@ -10,4 +10,8 @@ urlpatterns = [
     path( 'participants/<int:pk>' , CompanyDetailView.as_view() , name = 'company-detail' ) , 
     path( 'offers' , ListOfferView.as_view() , name = 'offer-list' ) , 
     path( 'offers/<int:pk>' , OfferDetailView.as_view() , name = 'offer-detail' ) , 
+    path( 'coordinates/<int:pk>' , CoordDetailView.as_view() , name = 'cord-detail' ) ,
+    path( 'company-products/<int:pk>' , ListCompanyProductsView.as_view() , name = 'comp-prod' ) , 
+    path( 'products/<int:pk>' , ProductDetailView.as_view() , name = 'prod-detail' ) ,
+    path( 'info' , GetInfoView.as_view() , name = 'inf' )
 ]
